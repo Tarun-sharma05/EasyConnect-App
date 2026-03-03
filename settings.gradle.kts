@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ContactApp_3"
+rootProject.name = "EasyConnect"
 include(":app")
  

@@ -1,22 +1,21 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
+//    alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    kotlin("plugin.serialization") version "2.3.10"
     id("com.google.devtools.ksp")
-
     id("com.google.dagger.hilt.android")
-    kotlin("plugin.serialization") version "2.0.20"
 
 }
 
 android {
-    namespace = "com.example.contactapp_3"
-    compileSdk = 35
+    namespace = "com.example.easyconnect"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.contactapp_3"
+        applicationId = "com.example.easyconnect"
         minSdk = 27
-        targetSdkVersion(rootProject.extra["defaultTargetSdkVersion"] as Int)
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -36,12 +35,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+//    kotlinOptions {
+//        jvmTarget = "1.8"
+//    }
     buildFeatures {
         compose = true
     }
@@ -53,7 +52,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    buildToolsVersion = rootProject.extra["buildToolsVersion"] as String
+    buildToolsVersion = "36.0.0"
 }
 
 dependencies {
@@ -66,6 +65,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+//    implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.foundation.android)
     implementation(libs.androidx.foundation.android)
     implementation(libs.androidx.foundation.android)
@@ -76,10 +76,14 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation("androidx.navigation:navigation-compose:2.8.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
+    implementation("androidx.navigation:navigation-compose:2.9.7")
+//    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.10.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.10.0")
 
-    val roomVersion = "2.6.1"
+    implementation("androidx.compose.material:material-icons-core:1.7.8")
+    implementation("androidx.compose.material:material-icons-extended:1.7.8")
+
+    val roomVersion = "2.8.4"
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
@@ -87,7 +91,7 @@ dependencies {
     //Optional - Kotlin Extensions and coroutine support for room
     implementation("androidx.room:room-ktx:$roomVersion")
 
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    ksp("com.google.dagger:hilt-android-compiler:2.51.1")
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation("com.google.dagger:hilt-android:2.59.2")
+    ksp("com.google.dagger:hilt-android-compiler:2.59.2")
+    implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
 }
